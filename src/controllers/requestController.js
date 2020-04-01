@@ -43,9 +43,21 @@ module.exports = {
     },
     async show(req, resp) {
         try {
-            const response = await connection('request').select('*');
+            const response = await connection('request')
+            .select(
+                'r.description',
+                'r.number',
+                'r.date',
+                'c.description as consultant',
+                'ty.description as type', 
+                'ty.color',                 
+                'r.tags',
+            )
+            .from('request as r')
+            .join('type as ty', 'ty.id','=', 'r.type_id')
+            .join('consultant as c', 'c.id','=', 'r.consultant_id')
 
-            return resp.json( response );
+            return resp.json(response);
 
         }catch(erro){
             return resp.json({ message: 'Something went wrong!' })
