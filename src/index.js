@@ -9,4 +9,4 @@ app.use(cors());
 app.use(routers)
 
 
-app.listen('3333');
+app.listen(3333, '0.0.0.0');

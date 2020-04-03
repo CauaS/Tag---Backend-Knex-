@@ -19,11 +19,11 @@ routers.delete('/type/:id', typeController.delete);
 routers.post('/request', requestController.create);
 routers.get('/request', requestController.show);
 routers.delete('/request/:id', requestController.delete);
-routers.get('/request/number', requestController.searchRequest);
-routers.get('/request/in', requestController.searchRequestIn);
+routers.post('/request/number', requestController.searchRequest);
+routers.post('/request/in', requestController.searchRequestIn);
 
 routers.get('/tags', tagsController.show);
 routers.delete('/tags/:id', tagsController.delete);
-routers.get('/tags/in', tagsController.searchTagIn);
+routers.post('/tags/in', tagsController.searchTagIn);
 
 module.exports = routers;
