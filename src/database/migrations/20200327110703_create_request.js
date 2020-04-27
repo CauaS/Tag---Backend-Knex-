@@ -6,6 +6,8 @@ exports.up = function(knex) {
       table.integer('number').notNullable();
       table.string('date').notNullable();
       table.string('tags').notNullable();
+      table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
+      table.timestamp('updated_at').notNullable().defaultTo(knex.fn.now());
 
       table.integer('type_id').notNullable();
       table.integer('consultant_id').notNullable();
