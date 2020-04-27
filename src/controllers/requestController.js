@@ -52,10 +52,13 @@ module.exports = {
                 'ty.description as type', 
                 'ty.color',                 
                 'r.tags',
+                'r.created_at',
+                'r.updated_at'
             )
             .from('request as r')
             .join('type as ty', 'ty.id','=', 'r.type_id')
-            .join('consultant as c', 'c.id','=', 'r.consultant_id')
+            .join('consultant as c', 'c.id','=', 'r.consultant_id');
+
 
             return resp.json(response);
 
