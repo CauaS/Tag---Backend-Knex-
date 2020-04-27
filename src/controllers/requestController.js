@@ -59,7 +59,6 @@ module.exports = {
             .join('type as ty', 'ty.id','=', 'r.type_id')
             .join('consultant as c', 'c.id','=', 'r.consultant_id');
 
-
             return resp.json(response);
 
         }catch(erro){

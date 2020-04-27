@@ -5,6 +5,7 @@ const  consultController = require('./controllers/consultController');
 const  typeController = require('./controllers/typeController');
 const  requestController = require('./controllers/requestController');
 const  tagsController = require('./controllers/tagsController');
+const  requestMonthController = require('./controllers/dashboard/requestMonthController');
 
 
 routers.post('/consultant', consultController.create);
@@ -25,5 +26,8 @@ routers.post('/request/in', requestController.searchRequestIn);
 routers.get('/tags', tagsController.show);
 routers.delete('/tags/:id', tagsController.delete);
 routers.post('/tags/in', tagsController.searchTagIn);
+
+
+routers.get('/dashboard/month', requestMonthController.show);
 
 module.exports = routers;
