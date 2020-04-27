@@ -99,7 +99,8 @@ module.exports = {
             .join('type as ty', 'ty.id','=', 'r.type_id')
             .join('consultant as c', 'c.id','=', 'r.consultant_id')
 
-            return resp.json(response);
+            return resp.json(response);s
+
         }
         catch(erro) {
             return resp.json({ message: 'Something went wrong!' });
