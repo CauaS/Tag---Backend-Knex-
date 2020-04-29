@@ -6,6 +6,7 @@ const  typeController = require('./controllers/typeController');
 const  requestController = require('./controllers/requestController');
 const  tagsController = require('./controllers/tagsController');
 const  requestMonthController = require('./controllers/dashboard/requestMonthController');
+const  requestPatchController = require('./controllers/dashboard/requestPatchController');
 
 
 routers.post('/consultant', consultController.create);
@@ -29,5 +30,6 @@ routers.post('/tags/in', tagsController.searchTagIn);
 
 
 routers.get('/dashboard/month', requestMonthController.show);
+routers.get('/dashboard/patch', requestPatchController.show);
 
 module.exports = routers;
