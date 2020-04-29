@@ -3,7 +3,7 @@ const connection = require('../../database/connections');
 module.exports = {
     async show(req, resp) {
         const date = new Date();
-        const DAY = date.getDate() > 10 ? `0${date.getDate()}`: date.getDate ;
+        const DAY = date.getDate() > 10 ? `0${date.getDate()}`: date.getDate() ;
         const MONTH = date.getMonth()+1 > 10 ? `0${date.getMonth()+1}` : date.getMonth()+1;
         const YEAR = date.getFullYear();
 
