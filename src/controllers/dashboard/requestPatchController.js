@@ -14,14 +14,22 @@ module.exports = {
                 'ty.description as type',       
             )
             .count('r.number as qtd')
-            .max(knex.raw('count(r.number)'))
             .from('request as r')
             .join('type as ty', 'ty.id','=', 'r.type_id')
             .join('consultant as c', 'c.id','=', 'r.consultant_id')
             .whereBetween('created_at', ['2020-04-27 00:00:00', `${YEAR}-${MONTH}-${DAY} 00:00:00`])
-            .groupBy('ty.description') 
+            .groupBy('ty.description');
+
+            
+            const highest = response.reduce((prev, curr) =>  prev.qtd > curr.qtd ? prev : curr );
+            const lowest = response.reduce((prev, curr) =>  prev.qtd < curr.qtd ? prev : curr );
+
+            const finalHighest = Object.assign({}, highest, { type: 'up' });
+            const finalLowest  = Object.assign({}, lowest,  { type: 'down' });
+
+            const responseFinal = [finalHighest, finalLowest];
                 
-                return resp.json(response);
+                return resp.json(responseFinal);
         }catch(erro){
             return resp.json({ message: erro })
         }
