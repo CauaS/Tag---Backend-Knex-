@@ -8,6 +8,8 @@ module.exports = {
         const MONTH = date.getMonth()+1 > 10 ? `0${date.getMonth()+1}` : date.getMonth()+1;
         const YEAR = date.getFullYear();
 
+        let ttl = 0;
+
         try{
             const response = await connection('request')
             .select(                
@@ -23,13 +25,16 @@ module.exports = {
             
             const highest = response.reduce((prev, curr) =>  prev.qtd > curr.qtd ? prev : curr );
             const lowest = response.reduce((prev, curr) =>  prev.qtd < curr.qtd ? prev : curr );
-
+            response.map(item => ttl+=item.qtd)
+            
+            let total = {qtd: ttl , type: 'patch'};
             const finalHighest = Object.assign({}, highest, { type: 'up' });
             const finalLowest  = Object.assign({}, lowest,  { type: 'down' });
 
-            const responseFinal = [finalHighest, finalLowest];
+            const responseFinal = [total, finalHighest, finalLowest];
                 
-                return resp.json(responseFinal);
+            return resp.json(responseFinal);
+
         }catch(erro){
             return resp.json({ message: erro })
         }
