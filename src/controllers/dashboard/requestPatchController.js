@@ -27,9 +27,9 @@ module.exports = {
             const lowest = response.reduce((prev, curr) =>  prev.qtd < curr.qtd ? prev : curr );
             response.map(item => ttl+=item.qtd)
             
-            let total = {qtd: ttl , type: 'patch'};
-            const finalHighest = Object.assign({}, highest, { type: 'up' });
-            const finalLowest  = Object.assign({}, lowest,  { type: 'down' });
+            let total = {qtd: ttl , rate: 'patch'};
+            const finalHighest = Object.assign({}, highest, { rate: 'up' });
+            const finalLowest  = Object.assign({}, lowest,  { rate: 'down' });
 
             const responseFinal = [total, finalHighest, finalLowest];
                 
