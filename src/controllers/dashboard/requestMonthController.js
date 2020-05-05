@@ -8,9 +8,6 @@ module.exports = {
         const PREV_MONTH = date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth();
         const YEAR = date.getFullYear();
 
-        console.log(PREV_MONTH);
-        console.log(MONTH);
-
         try{
             const response = await connection('request')
             .select(                
