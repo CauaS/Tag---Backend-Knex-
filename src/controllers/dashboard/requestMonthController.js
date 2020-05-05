@@ -16,7 +16,7 @@ module.exports = {
             .from('request as r')
             .join('type as ty', 'ty.id','=', 'r.type_id')
             .join('consultant as c', 'c.id','=', 'r.consultant_id')
-            .whereBetween('created_at', ['2020-04-27 00:00:00', `${YEAR}-${MONTH}-${DAY} 00:00:00`])
+            .whereBetween('created_at', [`${YEAR}-${MONTH-1}-01 00:00:00`, `${YEAR}-${MONTH}-${DAY} 00:00:00`])
             .groupBy('ty.description') 
                 
                 return resp.json(response);
