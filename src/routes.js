@@ -39,5 +39,6 @@ routers.get('/events', eventController.show);
 
 routers.get('/occurrence', occurrenceController.show);
 routers.post('/occurrence', occurrenceController.create);
+routers.post('/occurrence/request', occurrenceController.index);
 
 module.exports = routers;
