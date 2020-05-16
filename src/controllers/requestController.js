@@ -45,6 +45,7 @@ module.exports = {
         try {
             const response = await connection('request')
             .select(
+                'r.id',
                 'r.description',
                 'r.number',
                 'r.date',
