@@ -7,6 +7,8 @@ const  requestController = require('./controllers/requestController');
 const  tagsController = require('./controllers/tagsController');
 const  requestMonthController = require('./controllers/dashboard/requestMonthController');
 const  requestPatchController = require('./controllers/dashboard/requestPatchController');
+const  eventController = require('./controllers/eventController');
+const  occurrenceController = require('./controllers/occurrenceController');
 
 
 routers.post('/consultant', consultController.create);
@@ -31,5 +33,11 @@ routers.post('/tags/in', tagsController.searchTagIn);
 
 routers.get('/dashboard/month', requestMonthController.show);
 routers.get('/dashboard/patch', requestPatchController.show);
+
+routers.post('/events', eventController.create);
+routers.get('/events', eventController.show);
+
+routers.get('/occurrence', occurrenceController.show);
+routers.post('/occurrence', occurrenceController.create);
 
 module.exports = routers;
