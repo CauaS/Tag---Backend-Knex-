@@ -9,6 +9,7 @@ const  requestMonthController = require('./controllers/dashboard/requestMonthCon
 const  requestPatchController = require('./controllers/dashboard/requestPatchController');
 const  eventController = require('./controllers/eventController');
 const  occurrenceController = require('./controllers/occurrenceController');
+const  scrumController = require('./controllers/scrumController');
 
 
 routers.post('/consultant', consultController.create);
@@ -40,5 +41,7 @@ routers.get('/events', eventController.show);
 routers.get('/occurrence', occurrenceController.show);
 routers.post('/occurrence', occurrenceController.create);
 routers.post('/occurrence/request', occurrenceController.index);
+
+routers.get('/scrum', scrumController.show);
 
 module.exports = routers;
