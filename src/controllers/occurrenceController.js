@@ -25,10 +25,10 @@ module.exports = {
             const response = await connection('occurrence')
                 .select(
                      'r.number',
-                     'r.created_at as request_date',
+                     knex.raw(`strftime('%d${'/'}%m${'/'}%Y', date(r.created_at)) as request_date`),
                      'ocor.comment',
                      'e.description as event_description',
-                     'ocor.created_at as ocor_date',
+                     knex.raw(`strftime('%d${'/'}%m${'/'}%Y', date(ocor.created_at)) as ocor_date`),
                      'c.description as consultant',
                      'ty.description as type', 
                      'ty.color', 
@@ -52,10 +52,10 @@ module.exports = {
             const response = await connection('occurrence')
                 .select(
                      'r.number',
-                     'r.created_at as request_date',
+                     knex.raw(`strftime('%d${'/'}%m${'/'}%Y', date(r.created_at)) as request_date`),
                      'ocor.comment',
                      'e.description as event_description',
-                     'ocor.created_at as ocor_date',
+                     knex.raw(`strftime('%d${'/'}%m${'/'}%Y', date(ocor.created_at)) as ocor_date`),
                      'c.description as consultant',
                      'ty.description as type', 
                      'ty.color', 
