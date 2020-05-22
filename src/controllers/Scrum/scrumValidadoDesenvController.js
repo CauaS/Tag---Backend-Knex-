@@ -21,7 +21,8 @@ module.exports = {
                 .join('request as r', 'r.id', '=', 'ocor.request_id')
                 .join('event as e'  , 'e.id', '=', 'ocor.event_id')
                 .join('type as ty', 'ty.id','=', 'r.type_id')
-                .join('consultant as c', 'c.id','=', 'r.consultant_id');
+                .join('consultant as c', 'c.id','=', 'r.consultant_id')
+                .groupBy('r.number')
 
 
             //if there is a property event_description with value 'Analisado', so is added the property 'analisado' to the item itself.
