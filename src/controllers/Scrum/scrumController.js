@@ -20,9 +20,9 @@ module.exports = {
                 .join('request as r', 'r.id', '=', 'ocor.request_id')
                 .join('event as e'  , 'e.id', '=', 'ocor.event_id')
                 .join('type as ty', 'ty.id','=', 'r.type_id')
-                .join('consultant as c', 'c.id','=', 'r.consultant_id');
+                .join('consultant as c', 'c.id','=', 'r.consultant_id')
 
-
+                
             //if there is a property event_description with value 'Analisado', so is added the property 'analisado' to the item itself.
             const fResponse = response.map(item => { 
                 if(item.event_description.includes('Analisado')){
@@ -32,7 +32,21 @@ module.exports = {
                 }
             });
 
-            return resp.json(fResponse);
+            let fResponseNumbers = new Set(fResponse.map(item => item.number));
+            let numbers = [...fResponseNumbers]
+            let occurrencesFiltered = [];
+            
+            const filtrados = numbers.map(num => {
+                return fResponse.filter(data =>  data.number === num ? data : null);
+            })
+            
+            for(item in filtrados){
+                filtrados[item].length == 1 
+                ? occurrencesFiltered.push(filtrados[item][0]) 
+                : occurrencesFiltered.push(filtrados[item][0], filtrados[item][filtrados[item].length-1])
+            }
+
+            return resp.json(occurrencesFiltered);
         }catch(erro){
             return resp.json({ message: `Something when wrong: ${erro}`})
         }
