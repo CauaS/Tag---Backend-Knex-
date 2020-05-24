@@ -38,9 +38,13 @@ module.exports = {
                 if(filtrados[item].length == 1){
                     if(filtrados[item][0].event_description.includes('Analisado')){
                         filtrados[item][0].analisado = true;
+
+                        //the occurrencesFiltered gets the register
                         occurrencesFiltered.push(filtrados[item][0]); 
                     }else {
                         filtrados[item][0].analisado = false;
+
+                        //the occurrencesFiltered gets the register
                         occurrencesFiltered.push(filtrados[item][0]);   
                     }
                 }
@@ -50,7 +54,8 @@ module.exports = {
                   filtrados[item][0].event_description.includes('Analisado')
                   ? filtrados[item][filtrados[item].length-1].analisado = true
                   : filtrados[item][filtrados[item].length-1].analisado = false
-        
+                    
+                  //the occurrencesFiltered gets the last register
                   occurrencesFiltered.push(filtrados[item][filtrados[item].length-1])
                 } 
             }
