@@ -22,28 +22,37 @@ module.exports = {
                 .join('type as ty', 'ty.id','=', 'r.type_id')
                 .join('consultant as c', 'c.id','=', 'r.consultant_id')
 
-                
-            //if there is a property event_description with value 'Analisado', so is added the property 'analisado' to the item itself.
-            const fResponse = response.map(item => { 
-                if(item.event_description.includes('Analisado')){
-                   return Object.assign({}, item, { analisado: true });
-                }else{
-                    return Object.assign({}, item, { analisado: false });
-                }
-            });
+            // it's reducing duplicated request numbers
+            let fResponseNumbers = new Set(response.map(item => item.number));
+            let numbers = [...fResponseNumbers];
 
-            let fResponseNumbers = new Set(fResponse.map(item => item.number));
-            let numbers = [...fResponseNumbers]
             let occurrencesFiltered = [];
             
+            //grouping request in objects
             const filtrados = numbers.map(num => {
-                return fResponse.filter(data =>  data.number === num ? data : null);
+                return response.filter(data =>  data.number === num ? data : null);
             })
             
             for(item in filtrados){
-                filtrados[item].length == 1 
-                ? occurrencesFiltered.push(filtrados[item][0]) 
-                : occurrencesFiltered.push(filtrados[item][0], filtrados[item][filtrados[item].length-1])
+                //if there is only one register, it's gonna verify it has event 'Analisado'
+                if(filtrados[item].length == 1){
+                    if(filtrados[item][0].event_description.includes('Analisado')){
+                        filtrados[item][0].analisado = true;
+                        occurrencesFiltered.push(filtrados[item][0]); 
+                    }else {
+                        filtrados[item][0].analisado = false;
+                        occurrencesFiltered.push(filtrados[item][0]);   
+                    }
+                }
+                else {
+                //if there're more then one register, it's gonna verify if the first register has event 'Analisado'
+                // if it does, then last register will get new property called analisado with true as value
+                  filtrados[item][0].event_description.includes('Analisado')
+                  ? filtrados[item][filtrados[item].length-1].analisado = true
+                  : filtrados[item][filtrados[item].length-1].analisado = false
+        
+                  occurrencesFiltered.push(filtrados[item][filtrados[item].length-1])
+                } 
             }
 
             return resp.json(occurrencesFiltered);
