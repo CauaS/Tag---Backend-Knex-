@@ -37,12 +37,12 @@ module.exports = {
                 //if there is only one register, it's gonna verify it has event 'Analisado'
                 if(filtrados[item].length == 1){
                     if(filtrados[item][0].event_description.includes('Analisado')){
-                        filtrados[item][0].analisado = true;
+                        filtrados[item][0].analysed = true;
 
                         //the occurrencesFiltered gets the register
                         occurrencesFiltered.push(filtrados[item][0]); 
                     }else {
-                        filtrados[item][0].analisado = false;
+                        filtrados[item][0].analysed = false;
 
                         //the occurrencesFiltered gets the register
                         occurrencesFiltered.push(filtrados[item][0]);   
@@ -50,10 +50,10 @@ module.exports = {
                 }
                 else {
                 //if there're more then one register, it's gonna verify if the first register has event 'Analisado'
-                // if it does, then last register will get new property called analisado with true as value
+                // if it does, then last register will get new property called analysed with true as value
                   filtrados[item][0].event_description.includes('Analisado')
-                  ? filtrados[item][filtrados[item].length-1].analisado = true
-                  : filtrados[item][filtrados[item].length-1].analisado = false
+                  ? filtrados[item][filtrados[item].length-1].analysed = true
+                  : filtrados[item][filtrados[item].length-1].analysed = false
                     
                   //the occurrencesFiltered gets the last register
                   occurrencesFiltered.push(filtrados[item][filtrados[item].length-1])
