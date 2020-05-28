@@ -52,11 +52,13 @@ routers.post('/occurrence', occurrenceController.create);
 routers.post('/occurrence/request', occurrenceController.index);
 
 routers.get('/scrum', scrumController.show);
+routers.delete('/scrum/delete', scrumController.delete);
 routers.get('/scrum/liberado', scrumLiberadoController.show);
 routers.get('/scrum/analisado', scrumAnalisadoController.show);
 routers.get('/scrum/validadoDesenv', scrumValidadoDesenvController.show);
 routers.get('/scrum/validadoConsult', scrumValidadoConsultController.show);
 routers.get('/scrum/atualizadoCliente', scrumAtualizadoClienteController.show);
 routers.get('/scrum/impedido', scrumImpedidoController.show);
+
 
 module.exports = routers;
